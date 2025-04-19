@@ -88,8 +88,8 @@ export default function Navbar() {
                   <span className="sr-only">Toggle Menu</span>
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="w-[220px] p-6">
-                <div className="flex flex-col gap-4">
+              <SheetContent side="right" className="w-[210px] p-6">
+                <div className="flex flex-col gap-4 mt-12 ">
                   <h2 className="text-lg font-semibold">Menu</h2>
                   {items.map((item) => (
                     <Link
@@ -101,7 +101,7 @@ export default function Navbar() {
                       )}
                       onClick={() => setIsOpen(false)}
                     >
-                      <item.icon className="h-5 w-5" />
+                      <item.icon className="h-5 w-5 text-[#8a2be2]" />
                       <span>{item.title}</span>
                     </Link>
                   ))}
