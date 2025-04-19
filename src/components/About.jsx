@@ -18,7 +18,7 @@ export default function About() {
         <section
             id="about"
             ref={sectionRef}
-            className="py-20  bg-muted/30 relative overflow-hidden"
+            className="py-20  bg-muted/30 relative overflow-hidden flex justify-center items-center"  
         >
             {/* Background Elements */}
             <motion.div

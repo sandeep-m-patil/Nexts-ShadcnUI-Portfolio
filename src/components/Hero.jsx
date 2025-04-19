@@ -11,7 +11,7 @@ export default function Hero() {
     const constraintsRef = useRef(null)
 
     return (
-        <section id="home" className="relative pt-50 pb-32 md:pt-44 md:pb-32 overflow-hidden">
+        <section id="home" className="relative pt-50 pb-32 md:pt-44 md:pb-32 overflow-hidden flex justify-center items-center">
             {/* Background Layer */}
             <motion.div
                 className="absolute inset-0 -z-10"

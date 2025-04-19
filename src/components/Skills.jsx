@@ -67,7 +67,7 @@ export default function Skills() {
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.9, 1], [0, 1, 1, 0])
 
   return (
-    <section id="skills" ref={sectionRef} className="py-20 dark:bg-black relative overflow-hidden p-4">
+    <section id="skills" ref={sectionRef} className="py-20 dark:bg-black relative overflow-hidden p-4 flex justify-center items-center">
       {/* Background elements */}
       <motion.div className="absolute -top-40 -left-40 w-80 h-80 rounded-full bg-primary/5 dark:bg-[#8a2be2]/60" style={{ y, opacity }} />
       <motion.div

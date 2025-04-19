@@ -63,7 +63,7 @@ export default function Navbar() {
       animate="visible"
       variants={navAnimation}
       className={cn(
-        "fixed top-0 w-full z-50 transition-all duration-300",
+        "fixed top-0 w-full z-50 transition-all duration-300 flex justify-center items-center",
         isScrolled ? "bg-background/80 backdrop-blur-md border-b" : "bg-transparent"
       )}
     >
@@ -101,18 +101,16 @@ export default function Navbar() {
                       )}
                       onClick={() => setIsOpen(false)}
                     >
-                      <item.icon className="h-5 w-5 text-[#8a2be2]" />
+                      <item.icon className="h-5 w-5 dark:text-[#8a2be2]" />
                       <span>{item.title}</span>
                     </Link>
                   ))}
-                  <a href="#">
-                    <a href="/Resume.pdf" download>
-                      <Button>
+                    <a href="/Resume.pdf"  download>
+                      <Button className="dark:bg-[#8a2be2] dark:text-white">
                         Download Resume
                       </Button>
                     </a>
 
-                  </a>
                 </div>
               </SheetContent>
             </Sheet>
@@ -140,7 +138,7 @@ export default function Navbar() {
             <motion.div variants={itemAnimation}>
 
               <a href="/Resume.pdf" download>
-                <Button>
+                <Button className="dark:bg-[#8a2be2] dark:text-white">
                   Download Resume
                 </Button>
               </a>

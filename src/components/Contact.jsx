@@ -28,7 +28,7 @@ export default function Contact() {
     <section
       id="contact"
       ref={sectionRef}
-      className="py-20 relative overflow-hidden bg-white dark:bg-black px-4"
+      className="py-20 relative overflow-hidden bg-white dark:bg-black px-4 flex justify-center items-center"
     >
       {/* Background animation */}
       <motion.div
