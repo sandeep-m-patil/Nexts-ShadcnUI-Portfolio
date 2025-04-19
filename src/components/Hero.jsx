@@ -22,24 +22,7 @@ export default function Hero() {
                 {/* Light/Dark radial background */}
                 <div className="absolute inset-0 bg-white dark:bg-black [background:radial-gradient(125%_125%_at_50%_10%,#ffffff_40%,#505050_100%)] dark:[background:radial-gradient(125%_125%_at_50%_10%,#000000_40%,#8a2be2_100%)]" />
 
-                {/* Subtle animated overlay */}
-                <motion.div
-                    className="absolute inset-0"
-                    style={{
-                        background: "url('/placeholder.svg?height=1080&width=1920')",
-                        backgroundSize: "cover",
-                        backgroundPosition: "center",
-                        opacity: 0.05,
-                    }}
-                    animate={{
-                        scale: [1, 1.05, 1],
-                    }}
-                    transition={{
-                        duration: 20,
-                        repeat: Number.POSITIVE_INFINITY,
-                        repeatType: "reverse",
-                    }}
-                />
+             
             </motion.div>
 
             <div className="container flex flex-col items-center text-center px-2">
