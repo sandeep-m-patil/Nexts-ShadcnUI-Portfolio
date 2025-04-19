@@ -11,7 +11,6 @@ import { useRef, useState } from "react"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import Portfolio from "@/images/Portfolio.png"
 import FlipZon from "@/images/Flipzon.png"
-import ComingSoon from "@/images/comingsoon.png"
 
 const projects = [
   {
