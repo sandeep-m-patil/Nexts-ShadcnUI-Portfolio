@@ -106,7 +106,7 @@ export default function Navbar() {
                     </Link>
                   ))}
                   <a href="#">
-                    <a href="/resume.pdf" download>
+                    <a href="/Resume.pdf" download>
                       <Button>
                         Download Resume
                       </Button>
@@ -139,7 +139,7 @@ export default function Navbar() {
             </motion.div>
             <motion.div variants={itemAnimation}>
 
-              <a href="/resume.pdf" download>
+              <a href="/Resume.pdf" download>
                 <Button>
                   Download Resume
                 </Button>
