@@ -29,7 +29,7 @@ export default function Footer() {
 
         <motion.button
           onClick={scrollToTop}
-          className="mt-6 p-3 rounded-full  bg-primary dark:bg-[#8a2be2] text-white hover:bg-[#6a1f9b] transition-colors"
+          className="mt-6 p-3 rounded-full  animate-bounce bg-primary dark:bg-[#8a2be2] text-white hover:bg-[#6a1f9b] transition-colors"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
