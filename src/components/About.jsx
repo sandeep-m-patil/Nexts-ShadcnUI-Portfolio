@@ -72,7 +72,7 @@ export default function About() {
               </h2>
               <div className="mt-4 space-y-4 text-md text-foreground">
                 <p>
-                  Hey there! I’m <strong className="text-3xl text-[#8a2be2]">Sandeep</strong>, a <span className="font-medium">full-stack web developer</span> who loves building beautiful, scalable apps with <strong>React</strong>, <strong>Next.js</strong>, and a modern tech stack.
+                  Hey there! I’m <strong className="text-3xl  text-primary dark:text-[#8a2be2]">Sandeep</strong>, a <span className="font-medium">full-stack web developer</span> who loves building beautiful, scalable apps with <strong>React</strong>, <strong>Next.js</strong>, and a modern tech stack.
                 </p>
                 <p>
                   I started my journey in college and since then, I’ve created many projects to turn ideas into interactive, responsive web applications.
