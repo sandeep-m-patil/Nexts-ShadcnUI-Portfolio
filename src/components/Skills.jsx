@@ -47,7 +47,7 @@ export default function Skills() {
         x: {
           repeat: Infinity,
           repeatType: "loop",
-          duration: 10, 
+          duration: 15, 
           ease: "linear",
         },
       },
