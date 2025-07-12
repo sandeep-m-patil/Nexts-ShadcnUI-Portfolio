@@ -24,7 +24,7 @@ export default function Footer() {
           <p className="font-bold text-xl">
             Portfolio<span className="text-primary">.</span>
           </p>
-          <p className="mt-2 text-sm text-muted-foreground">&copy; {currentYear} Alex Parker. All rights reserved.</p>
+          <p className="mt-2 text-sm text-muted-foreground">&copy; {currentYear} Sandeep . All rights reserved.</p>
         </motion.div>
 
         <motion.button
