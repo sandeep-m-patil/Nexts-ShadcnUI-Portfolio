@@ -1,100 +1,94 @@
 "use client"
 
 import { motion, useScroll, useTransform } from "framer-motion"
-import { Card, CardContent } from "@/components/ui/card"
 import { useRef } from "react"
+import { Rocket, Code, Brain } from "lucide-react"
+import Profile from "@/images/profile.png"
+import Image from "next/image"
 
 export default function About() {
-    const sectionRef = useRef(null)
-    const { scrollYProgress } = useScroll({
-        target: sectionRef,
-        offset: ["start end", "end start"],
-    })
+  const sectionRef = useRef(null)
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  })
 
-    const y = useTransform(scrollYProgress, [0, 1], [100, -100])
-    const opacity = useTransform(scrollYProgress, [0, 0.2, 0.9, 1], [0, 1, 1, 0])
+  const y = useTransform(scrollYProgress, [0, 1], [100, -100])
+  const yReverse = useTransform(scrollYProgress, [0, 1], [-100, 100])
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.9, 1], [0, 1, 1, 0])
 
-    return (
-        <section
-            id="about"
-            ref={sectionRef}
-            className="py-20  bg-muted/30 relative overflow-hidden flex justify-center items-center"  
+  const stats = [
+    { number: "0", label: "Years Experience", icon: <Rocket className="h-6 w-6" /> },
+    { number: "10+", label: "Projects Completed", icon: <Code className="h-6 w-6" /> },
+    { number: "∞", label: "Ideas & Passion", icon: <Brain className="h-6 w-6" /> },
+  ]
+
+  return (
+    <section
+      id="about"
+      aria-label="About Section"
+      ref={sectionRef}
+      className="py-40 bg-muted/30 relative overflow-hidden flex justify-center items-center"
+    >
+      {/* Background Gradients */}
+      <motion.div
+        className="absolute top-100 -right-40 w-[500px] h-[500px] rounded-full bg-gradient-to-br bg-primary/60 dark:bg-[#8a2be2]/60 blur-3xl"
+        style={{ y, opacity }}
+      />
+      <motion.div
+        className="absolute bottom-80 -left-50 w-[500px] h-[500px] rounded-full bg-gradient-to-tl bg-primary/60 dark:bg-[#8a2be2]/60 blur-3xl"
+        style={{ y: yReverse, opacity }}
+      />
+
+      <div className="container relative z-10">
+        {/* About Content */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          className="flex flex-col md:flex-row gap-12 items-center"
         >
-            {/* Background Elements */}
-            <motion.div
-                className="absolute -top-40 -right-40 w-80 h-80 rounded-full  bg-primary/5 dark:bg-[#8a2be2]/60"
-                style={{ y, opacity }}
+          {/* Profile Image */}
+          <div className="w-full md:w-1/3 flex justify-center">
+            <Image
+              src={Profile}
+              alt="Sandeep"
+              className="rounded-full w-48 h-48 object-cover border-4 dark:border-[#8a2be2] shadow-xl"
+              
             />
+          </div>
+
+          {/* Text Content */}
+          <div className="w-full md:w-2/3 px-8">
             <motion.div
-                className="absolute -bottom-40 -left-40 w-80 h-80 rounded-full  bg-primary/5 dark:bg-[#8a2be2]/60"
-                style={{ y: useTransform(scrollYProgress, [0, 1], [-100, 100]), opacity }}
-            />
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-3xl font-bold bg-gradient-to-r  bg-clip-text">
+                About Me
+              </h2>
+              <div className="mt-4 space-y-4 text-md text-foreground">
+                <p>
+                  Hey there! I’m <strong className="text-3xl text-[#8a2be2]">Sandeep</strong>, a <span className="font-medium">full-stack web developer</span> who loves building beautiful, scalable apps with <strong>React</strong>, <strong>Next.js</strong>, and a modern tech stack.
+                </p>
+                <p>
+                  I started my journey in college and since then, I’ve created many projects to turn ideas into interactive, responsive web applications.
+                </p>
+                <p>
+                  Beyond coding, I enjoy exploring AI, learning new tech, and building side projects. I'm always excited for a challenge and passionate about problem-solving!
+                </p>
+              </div>
+            </motion.div>
+          </div>
+        </motion.div>
 
-            <div className="container relative z-10">
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    transition={{ duration: 0.5 }}
-                    viewport={{ once: true }}
-                    className="flex flex-col md:flex-row gap-12 items-center"
-                >
-                    <div className="w-full px-8">
-                        <motion.div
-                            initial={{ opacity: 0, x: 50 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.5, delay: 0.2 }}
-                            viewport={{ once: true }}
-                        >
-                            <h2 className="text-3xl font-bold tracking-tight text-foreground">
-                                About Me
-                            </h2>
-                            <div className="mt-4 space-y-4 text-md">
-                                <p>
-                                    Hello! I'm <strong className="dark:text-[#8a2be2] text-3xl"> Sandeep </strong>, a passionate full-stack web developer focused on building modern and responsive web applications. I specialize in React, Next.js, and enjoy crafting clean, user-friendly interfaces.
-                                </p>
-                                <p>
-                                    My web development journey began in college with my first project. Since then, I’ve been building responsive and accessible web apps to sharpen my skills and bring ideas to life.
-                                </p>
-                                <p>
-                                    When I’m not coding, I enjoy exploring new technologies, reading about AI, and building side projects. I’m always eager to learn and take on new challenges.
-                                </p>
-                            </div>
-                        </motion.div>
-                    </div>
-                </motion.div>
+      
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-20">
-                    {[
-                        { number: "0", label: "Years Experience" },
-                        { number: "10+", label: "Projects Completed" },
-                        { number: "∞", label: "Ideas & Passion" },
-                    ].map((stat, index) => (
-                        <motion.div
-                            key={index}
-                            initial={{ opacity: 0, y: 50 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, delay: index * 0.1 }}
-                            viewport={{ once: true }}
-                            whileHover={{ y: -10, scale: 1.03 }}
-                        >
-                            <Card className="overflow-hidden border-none shadow-lg mx-8  dark:bg-black dark:text-white">
-                                <CardContent className="flex flex-col items-center justify-center p-6">
-                                    <motion.span
-                                        className="text-4xl font-bold text-primary dark:text-[#8a2be2]"
-                                        initial={{ opacity: 0, scale: 0.5 }}
-                                        whileInView={{ opacity: 1, scale: 1 }}
-                                        transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
-                                        viewport={{ once: true }}
-                                    >
-                                        {stat.number}
-                                    </motion.span>
-                                    <span className="text-muted-foreground mt-2 dark:text-white ">{stat.label}</span>
-                                </CardContent>
-                            </Card>
-                        </motion.div>
-                    ))}
-                </div>
-            </div>
-        </section>
-    )
+      
+      </div>
+    </section>
+  )
 }
