@@ -93,12 +93,7 @@ export default function Projects() {
 
   return (
     <section id="projects" ref={sectionRef} className="py-20 relative overflow-hidden px-4 flex justify-center items-center">
-      {/* Background elements */}
-      <motion.div className="absolute top-40 -left-40 w-80 h-80 rounded-full bg-primary/5 dark:bg-[#8a2be2]/60" style={{ y, opacity }} />
-      <motion.div
-        className="absolute bottom-[-140] right-[-140] w-80 h-80 rounded-full bg-primary/5 dark:bg-[#8a2be2]/60"
-        style={{ y, opacity }}
-      />
+     
 
 
 

@@ -69,7 +69,7 @@ export default function Navbar() {
     >
       <div className="container flex h-16 items-center justify-between px-8 sm:px-6">
         <motion.div variants={itemAnimation}>
-          <Link href="/" className="font-bold text-xl dark:text-[#8a2be2]">
+          <Link href="/" className="font-bold text-xl dark:text-white">
             Portfolio<span className="text-primary">.</span>
           </Link>
         </motion.div>

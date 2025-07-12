@@ -12,28 +12,14 @@ export default function About() {
         offset: ["start end", "end start"],
     })
 
-    const y = useTransform(scrollYProgress, [0, 1], [100, -100])
-    const yReverse = useTransform(scrollYProgress, [0, 1], [-100, 100])
-    const opacity = useTransform(scrollYProgress, [0, 0.2, 0.9, 1], [0, 1, 1, 0])
-
-
+   
     return (
         <section
             id="about"
             aria-label="About Section"
             ref={sectionRef}
-            className="py-40 bg-muted/30 relative overflow-hidden flex justify-center items-center"
-        >
-            {/* Background Gradients */}
-            <motion.div
-                className="absolute top-40 right-[-10rem]  w-80 h-80  rounded-full bg-primary/10 dark:bg-[#8a2be2]/60 "
-                style={{ y, opacity }}
-            />
+            className="py-40 bg-muted/80 relative overflow-hidden flex justify-center items-center dark:bg-gradient-to-b dark:from-[#8a2be2]/80 dark:to-[#8a2be2]/40">
 
-            <motion.div
-                className="absolute bottom-[-10rem] left-[-15rem]  w-60 h-60 sm:w-80 sm:h-80 rounded-full bg-primary/10 dark:bg-[#8a2be2]/60"
-                style={{ y: useTransform(scrollYProgress, [0, 1], [-100, 100]), opacity }}
-            />
 
             <div className="container relative z-10">
                 {/* About Content */}
@@ -67,7 +53,7 @@ export default function About() {
                             </h2>
                             <div className="mt-4 space-y-4 text-md text-foreground">
                                 <p>
-                                    Hey there! I’m <strong className="text-3xl  text-primary dark:text-[#8a2be2]">Sandeep</strong>, a <span className="font-medium">full-stack web developer</span> who loves building beautiful, scalable apps with <strong>React</strong>, <strong>Next.js</strong>, and a modern tech stack.
+                                    Hey there! I’m <strong className="text-3xl  text-primary">Sandeep</strong>, a <span className="font-medium">full-stack web developer</span> who loves building beautiful, scalable apps with <strong>React</strong>, <strong>Next.js</strong>, and a modern tech stack.
                                 </p>
                                 <p>
                                     I started my journey in college and since then, I’ve created many projects to turn ideas into interactive, responsive web applications.

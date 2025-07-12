@@ -30,15 +30,7 @@ export default function Contact() {
       ref={sectionRef}
       className="py-20 relative overflow-hidden bg-white dark:bg-black px-4 flex justify-center items-center"
     >
-      {/* Background animation */}
-      <motion.div
-        className="absolute top-40 -right-40 w-80 h-80 rounded-full bg-primary/10 dark:bg-[#8a2be2]/60"
-        style={{ y, opacity }}
-      />
-      <motion.div
-        className="absolute -bottom-40 -left-40 w-80 h-80 rounded-full bg-primary/10 dark:bg-[#8a2be2]/60"
-        style={{ y: useTransform(scrollYProgress, [0, 1], [-100, 100]), opacity }}
-      />
+    
 
       <div className="container relative z-10">
         <div className="text-center max-w-2xl mx-auto mb-16">
