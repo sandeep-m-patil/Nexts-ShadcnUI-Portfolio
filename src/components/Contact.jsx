@@ -62,7 +62,7 @@ export default function Contact() {
               transition={{ duration: 0.4, delay: index * 0.1 }}
               viewport={{ once: true }}
             >
-              <Card className="h-full shadow-md dark:bg-[#111111] hover:shadow-xl transition-shadow">
+              <Card className="h-full shadow-md dark:bg-[#111111] hover:shadow-xl transition-shadow ">
                 <CardHeader className="flex flex-row items-center space-x-4">
                   <div className="p-3 rounded-full bg-primary/10 dark:bg-[#8a2be2]/20 text-primary dark:text-[#8a2be2]">
                     <item.icon className="h-5 w-5" />
