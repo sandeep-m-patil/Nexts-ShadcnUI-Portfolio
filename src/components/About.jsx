@@ -31,14 +31,15 @@ export default function About() {
       className="py-40 bg-muted/30 relative overflow-hidden flex justify-center items-center"
     >
       {/* Background Gradients */}
-      <motion.div
-        className="absolute top-100 -right-40 w-[500px] h-[500px] rounded-full bg-gradient-to-br bg-primary/60 dark:bg-[#8a2be2]/60 blur-3xl"
-        style={{ y, opacity }}
-      />
-      <motion.div
-        className="absolute bottom-80 -left-50 w-[500px] h-[500px] rounded-full bg-gradient-to-tl bg-primary/60 dark:bg-[#8a2be2]/60 blur-3xl"
-        style={{ y: yReverse, opacity }}
-      />
+       <motion.div
+  className="absolute top-40 right-[-10rem]  w-80 h-80  rounded-full bg-primary/10 dark:bg-[#8a2be2]/60 "
+  style={{ y, opacity }}
+/>
+
+<motion.div
+  className="absolute bottom-[-10rem] left-[-15rem]  w-60 h-60 sm:w-80 sm:h-80 rounded-full bg-primary/10 dark:bg-[#8a2be2]/60"
+  style={{ y: useTransform(scrollYProgress, [0, 1], [-100, 100]), opacity }}
+/>
 
       <div className="container relative z-10">
         {/* About Content */}
