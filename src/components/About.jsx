@@ -2,7 +2,6 @@
 
 import { motion, useScroll, useTransform } from "framer-motion"
 import { useRef } from "react"
-import Profile from "@/images/profile.png"
 import Image from "next/image"
 
 export default function About() {
@@ -33,7 +32,9 @@ export default function About() {
                     {/* Profile Image */}
                     <div className="w-full md:w-1/3 flex justify-center">
                         <Image
-                            src={Profile}
+                            src="/images/profile.png"
+                            width={200}
+                            height={200}
                             alt="Sandeep"
                             className="rounded-full w-48 h-48 object-cover border-4 dark:border-[#8a2be2] shadow-xl"
 

@@ -105,11 +105,11 @@ export default function Navbar() {
                       <span>{item.title}</span>
                     </Link>
                   ))}
-                    <a href="/Resume.pdf"  download>
-                      <Button className="dark:bg-[#8a2be2] dark:text-white">
-                        Download Resume
-                      </Button>
-                    </a>
+                  <a href="/Sandeep_Madhavrao_Patil_Resume.pdf" download>
+                    <Button className="dark:bg-[#8a2be2] dark:text-white">
+                      Download Resume
+                    </Button>
+                  </a>
 
                 </div>
               </SheetContent>
@@ -137,15 +137,11 @@ export default function Navbar() {
             </motion.div>
             <motion.div variants={itemAnimation}>
 
-              <a href="/Resume.pdf" download>
+              <a href="/Sandeep_Madhavrao_Patil_Resume.pdf" download>
                 <Button className="dark:bg-[#8a2be2] dark:text-white">
                   Download Resume
                 </Button>
               </a>
-
-
-
-
             </motion.div>
           </nav>
         )}

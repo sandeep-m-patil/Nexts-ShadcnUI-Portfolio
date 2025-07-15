@@ -58,7 +58,7 @@ export default function Skills() {
     <section
       id="skills"
       ref={sectionRef}
-      className="py-20 bg-white dark:bg-black  relative flex justify-center items-center"
+      className="md:py-40 py-20  bg-white dark:bg-black  relative flex justify-center items-center"
     >
       <div className="container relative z-10">
         <div className="text-center max-w-2xl mx-auto mb-16">
