@@ -26,7 +26,7 @@ const XIcon = ({ className }) => (
 
   const contactList = [
     { icon: Mail, title: "Email", content: "sandeeppatil10705@gmail.com", href: "mailto:sandeeppatil10705@gmail.com" },
-    { icon: XIcon, title: "X", content: "SANDEEPMADHAV2", href: "https://x.com/SANDEEPMADHAV2" },
+    { icon: XIcon, title: "X", content: "SANDEEPMADHAV2", href: "https://x.com/SANDEEPMADHAVR2?t=NfXiLG99hCHEuGhs1D9PUw&s=08" },
     { icon: Github, title: "GitHub", content: "sandeep-m-patil", href: "https://github.com/sandeep-m-patil" },
     { icon: Linkedin, title: "LinkedIn", content: "psandeep2005", href: "https://linkedin.com/in/psandeep2005" },
     { icon: Code2, title: "LeetCode", content: "23ag1a66b7", href: "https://leetcode.com/23ag1a66b7" },
