@@ -10,30 +10,36 @@ export const blogPosts = [
     slug: "flipzon-ecommerce-site",
     icon: MdOutlineShoppingCart ,
     title: "FlipZon – E-commerce site ",
-    description: `Developed a dynamic and responsive E-commerce Platform using the MERN stack.
-
-Implemented full CRUD functionality for product management, enabling 100% control over product lifecycle (Create, Read, Update, Delete). 
+    description: `A full-featured e-commerce website built with the MERN stack (MongoDB, Express.js, React.js/Next.js, and Node.js)
+    
+The platform offers essential features such as user registration/login, product listings, detailed product views, cart management, along with user profile and dashboard pages for a personalized experience. 
 
 Built with ❤️ using the MERN stack.
 
 `,
     techStack: [
+      "Next.js",
       "MongoDB",
       "Express.js",
-      "React.js",
       "Node.js",
-      "Tailwind CSS",
-      "Zustand"
+      "Tailwind CSS/ShadcnUI",
+      "Zustand",
+      "JWT"
     ],
     features: [
-      "Add new Product",
-      "Remove old Product",
-      "Update existing Product",
-      "Responsive UI using Tailwind CSS",
+      "User and Admin registration and login",
+      "JWT-based authentication",
+      "View all products",
+      "Product details page with images, description, etc.",
+      "Add to cart, remove from cart",
+      "User and Admin profile page",
+      "Admin Dashboard",
+      "Admin : Add, update, and delete products",
+      "Responsive UI using Tailwind CSS/ShadcnUI",
     ],
     links: {
-      github: "https://github.com/sandeep-m-patil/MERN-FlipZon",
-      demo: "https://mern-flipzon.vercel.app/",
+      github: "https://github.com/sandeep-m-patil/FlipZon",
+      demo: "https://flip-zon.vercel.app/",
     },
 
     image: "/images/Flipzon.png",// 🔁 Replace this with actual image URL
