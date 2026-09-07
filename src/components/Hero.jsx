@@ -1,129 +1,216 @@
-"use client"
+"use client";
 
-import { Button } from "@/components/ui/button"
-import { motion } from "framer-motion"
-import { ArrowRight, Github, Linkedin, Twitter } from "lucide-react"
-import Link from "next/link"
-import { TypeAnimation } from "react-type-animation"
-import { useRef } from "react"
+import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
+import { ArrowRight, Github, Linkedin, Twitter } from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
+
+const stats = [
+  { label: "Projects", value: "10+" },
+  { label: "Technologies", value: "15+" },
+  { label: "Years Coding", value: "3+" },
+];
+
+const floatingShapes = [
+  { size: 64, x: "10%", y: "20%", delay: 0, duration: 8 },
+  { size: 48, x: "85%", y: "15%", delay: 1, duration: 10 },
+  { size: 36, x: "75%", y: "70%", delay: 2, duration: 7 },
+  { size: 52, x: "15%", y: "75%", delay: 0.5, duration: 9 },
+  { size: 28, x: "50%", y: "85%", delay: 1.5, duration: 6 },
+];
 
 export default function Hero() {
-    const constraintsRef = useRef(null)
+  return (
+    <section
+      id="home"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16"
+    >
+      {/* Grid background */}
+      <div className="absolute inset-0 bg-grid opacity-50" />
 
-    return (
-        <section id="home" className="relative pt-50 pb-32 md:pt-44 md:pb-32 overflow-hidden flex justify-center items-center">
-            {/* Background Layer */}
+      {/* Radial fade overlays */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-transparent to-background" />
+      <div className="absolute inset-0 bg-gradient-to-r from-background/60 via-transparent to-background/60" />
+
+      {/* Purple accent glow */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-primary/5 dark:bg-primary/8 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-1/4 left-1/3 w-[400px] h-[400px] bg-primary/3 dark:bg-primary/5 rounded-full blur-[100px] pointer-events-none" />
+
+      {/* Floating shapes */}
+      {floatingShapes.map((shape, i) => (
+        <motion.div
+          key={i}
+          className="absolute rounded-full border border-primary/10 bg-primary/5 hidden lg:block"
+          style={{
+            width: shape.size,
+            height: shape.size,
+            left: shape.x,
+            top: shape.y,
+          }}
+          animate={{
+            y: [0, -20, 0],
+            x: [0, 12, 0],
+            rotate: [0, 180, 360],
+            opacity: [0.3, 0.6, 0.3],
+          }}
+          transition={{
+            duration: shape.duration,
+            repeat: Infinity,
+            delay: shape.delay,
+            ease: "easeInOut",
+          }}
+        />
+      ))}
+
+      <div className="container relative z-10 mx-auto max-w-6xl px-6">
+        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+          {/* Text Content */}
+          <div className="flex-1 text-center lg:text-left">
             <motion.div
-                className="absolute inset-0 -z-10"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 1 }}
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             >
-                {/* Light/Dark radial background */}
-                <div className="absolute inset-0 bg-white dark:bg-black [background:radial-gradient(125%_125%_at_50%_10%,#ffffff_40%,#505050_100%)] dark:[background:radial-gradient(125%_125%_at_50%_10%,#000000_40%,#8a2be2_100%)]" />
-
-             
+              <span className="inline-flex items-center gap-2 text-sm font-medium text-primary mb-6">
+                <motion.span
+                  className="h-px bg-primary"
+                  initial={{ width: 0 }}
+                  animate={{ width: 32 }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
+                />
+                Full Stack Developer
+              </span>
             </motion.div>
 
-            <div className="container flex flex-col items-center text-center px-2">
-                <motion.div
-                    ref={constraintsRef}
-                    className="max-w-3xl mx-auto relative"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.5 }}
+            <motion.h1
+              className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight leading-[1.1]"
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            >
+              Building digital
+              <br />
+              experiences that
+              <br />
+              <motion.span
+                className="text-gradient"
+                animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
+                style={{ backgroundSize: "200% 200%" }}
+              >
+                matter.
+              </motion.span>
+            </motion.h1>
+
+            <motion.p
+              className="mt-6 text-muted-foreground text-lg max-w-lg mx-auto lg:mx-0 leading-relaxed"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            >
+              I&apos;m Sandeep — a developer focused on clean code, thoughtful
+              design, and real-world performance. Currently building
+              full-stack web applications with React and Node.js.
+            </motion.p>
+
+            <motion.div
+              className="flex flex-col sm:flex-row gap-4 mt-8 justify-center lg:justify-start"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <Button size="lg" asChild className="rounded-full px-8">
+                <Link href="#projects" className="gap-2">
+                  View Projects
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </Button>
+              <Button size="lg" variant="outline" asChild className="rounded-full px-8">
+                <Link href="#contact">Get in Touch</Link>
+              </Button>
+            </motion.div>
+
+            {/* Social Links */}
+            <motion.div
+              className="flex items-center gap-4 mt-8 justify-center lg:justify-start"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
+            >
+              {[
+                { icon: Github, href: "https://github.com/sandeep-m-patil", label: "GitHub" },
+                { icon: Linkedin, href: "https://linkedin.com/in/psandeep2005", label: "LinkedIn" },
+                { icon: Twitter, href: "https://x.com/SANDEEPMADHAVR2", label: "X" },
+              ].map((social, i) => (
+                <motion.a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2.5 rounded-full bg-muted hover:bg-primary/10 text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-110"
+                  whileHover={{ scale: 1.15, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                    {/* Floating elements */}
-                    <motion.div className="hidden md:block absolute -top-20 -left-20 w-16 h-16 rounded-full bg-primary/60 dark:bg-[#8a2be2]/60"
-                        animate={{ y: [0, 15, 0], x: [0, 10, 0], rotate: [0, 10, 0] }}
-                        transition={{ duration: 5, repeat: Infinity, repeatType: "reverse" }}
-                    />
-                    <motion.div className="hidden md:block absolute -bottom-10 -right-10 w-20 h-20 rounded-full bg-primary/60 dark:bg-[#8a2be2]/60"
-                        animate={{ y: [0, -20, 0], x: [0, -15, 0], rotate: [0, -15, 0] }}
-                        transition={{ duration: 7, repeat: Infinity, repeatType: "reverse" }}
-                    />
-                    <motion.div className="hidden md:block absolute top-40 -right-32 w-12 h-12 rounded-lg bg-primary/60 dark:bg-[#8a2be2]/60"
-                        animate={{ y: [0, 30, 0], rotate: [0, 30, 0] }}
-                        transition={{ duration: 6, repeat: Infinity, repeatType: "reverse" }}
-                    />
+                  <social.icon className="h-5 w-5" />
+                </motion.a>
+              ))}
+            </motion.div>
+          </div>
 
-                    {/* Main heading */}
-                    <motion.h1
-                        className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl text-gray-900 dark:text-white"
-                        initial={{ y: 20, opacity: 0 }}
-                        animate={{ y: 0, opacity: 1 }}
-                        transition={{ duration: 0.7 }}
-                    >
-                        Hi, I'm{" "}
-                        <span className="text-primary relative">
-                            Sandeep
-                            <motion.span
-                                className="absolute -z-10 bottom-1 left-0 w-full h-3 bg-primary/20 dark:bg-primary/30"
-                                initial={{ width: 0 }}
-                                animate={{ width: "100%" }}
-                                transition={{ delay: 1, duration: 0.8 }}
-                            />
-                        </span>
-                    </motion.h1>
-
-                    {/* Animated roles */}
-                    <motion.div
-                        className="h-16 mt-4 text-2xl sm:text-3xl font-medium text-muted-foreground dark:text-gray-400"
-                        initial={{ y: 20, opacity: 0 }}
-                        animate={{ y: 0, opacity: 1 }}
-                        transition={{ duration: 0.7, delay: 0.2 }}
-                    >
-                        <TypeAnimation
-                            sequence={[
-                                "Full Stack Developer", 2000,
-                                "UI/UX Designer", 2000,
-                                "React Specialist", 2000,
-                                "Solving problems, making impact.", 2000,
-                            ]}
-                            wrapper="span"
-                            speed={50}
-                            repeat={Infinity}
-                        />
-                    </motion.div>
-
-                    {/* Sub description */}
-                    <motion.p
-                        className="mt-4 text-muted-foreground dark:text-gray-400 max-w-2xl mx-auto px-5"
-                        initial={{ y: 20, opacity: 0 }}
-                        animate={{ y: 0, opacity: 1 }}
-                        transition={{ duration: 0.7, delay: 0.4 }}
-                    >
-                        I build full-stack web experiences that are fast, accessible, and built to last — focused on clean code, inclusive design, and real-world performance.
-                    </motion.p>
-
-                    {/* CTA Buttons */}
-                    <motion.div
-                        className="flex flex-col sm:flex-row gap-4 mt-8 justify-center"
-                        initial={{ y: 20, opacity: 0 }}
-                        animate={{ y: 0, opacity: 1 }}
-                        transition={{ duration: 0.7, delay: 0.6 }}
-                    >
-                        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mt-6">
-                            <Button size="lg" asChild className="group w-50 sm:w-auto mx-8 sm:mx-0">
-                                <Link href="#projects" className="flex items-center justify-center">
-                                    View My Work
-                                    <motion.span className="ml-2 inline-block" animate={{ x: [0, 5, 0] }} transition={{ duration: 1, repeat: Infinity, repeatType: "reverse" }}>
-                                        <ArrowRight className="h-4 w-4" />
-                                    </motion.span>
-                                </Link>
-                            </Button>
-
-                            <Button size="lg" variant="outline" asChild className="group w-50 sm:w-auto mx-8 sm:mx-0">
-                                <Link href="#contact" className="flex items-center justify-center">
-                                    Contact Me
-                                </Link>
-                            </Button>
-                        </div>
-                    </motion.div>
-
-                  
-                </motion.div>
+          {/* Profile Image + Stats */}
+          <motion.div
+            className="flex-shrink-0 flex flex-col items-center gap-6"
+            initial={{ opacity: 0, scale: 0.8, x: 40 }}
+            animate={{ opacity: 1, scale: 1, x: 0 }}
+            transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <div className="relative group">
+              {/* Pulsing glow ring */}
+              <motion.div
+                className="absolute -inset-2 rounded-full bg-primary/20 blur-md"
+                animate={{ opacity: [0.3, 0.6, 0.3], scale: [1, 1.05, 1] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+              />
+              {/* Gradient border ring */}
+              <div className="absolute -inset-1 rounded-full bg-gradient-to-br from-primary via-primary/40 to-primary" />
+              <div className="relative w-56 h-56 sm:w-64 sm:h-64 rounded-full overflow-hidden bg-background">
+                <Image
+                  src="/images/profile.png"
+                  alt="Sandeep Patil"
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              </div>
             </div>
-        </section>
-    )
+
+            {/* Stats */}
+            <div className="flex items-center gap-6 sm:gap-8">
+              {stats.map((stat, i) => (
+                <motion.div
+                  key={stat.label}
+                  className="text-center"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 0.6,
+                    delay: 0.6 + i * 0.12,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                >
+                  <div className="text-2xl sm:text-3xl font-bold text-primary">
+                    {stat.value}
+                  </div>
+                  <div className="text-xs sm:text-sm text-muted-foreground mt-1">
+                    {stat.label}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
 }

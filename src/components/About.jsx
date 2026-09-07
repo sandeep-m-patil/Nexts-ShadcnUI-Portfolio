@@ -1,72 +1,117 @@
-"use client"
+"use client";
 
-import { motion, useScroll, useTransform } from "framer-motion"
-import { useRef } from "react"
-import Image from "next/image"
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
+import { Code2, Palette, Zap, Heart } from "lucide-react";
+
+const highlights = [
+  {
+    icon: Code2,
+    title: "Clean Code",
+    description: "Writing maintainable, well-structured code that scales.",
+  },
+  {
+    icon: Palette,
+    title: "UI/UX Focused",
+    description: "Building interfaces that are intuitive and visually refined.",
+  },
+  {
+    icon: Zap,
+    title: "Performance",
+    description: "Optimizing for speed, accessibility, and real-world usage.",
+  },
+  {
+    icon: Heart,
+    title: "Continuous Learner",
+    description: "Always exploring new tools, patterns, and technologies.",
+  },
+];
 
 export default function About() {
-    const sectionRef = useRef(null)
-    const { scrollYProgress } = useScroll({
-        target: sectionRef,
-        offset: ["start end", "end start"],
-    })
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
 
-   
-    return (
-        <section
-            id="about"
-            aria-label="About Section"
-            ref={sectionRef}
-            className="py-40 bg-muted/80 relative overflow-hidden flex justify-center items-center dark:bg-gradient-to-b dark:from-[#8a2be2]/80 dark:to-[#8a2be2]/40">
+  return (
+    <section id="about" className="py-24 sm:py-32 relative overflow-hidden">
+      {/* Subtle purple radial bg */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/3 dark:bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
 
+      <div className="container mx-auto max-w-6xl px-6 relative z-10" ref={ref}>
+        {/* Section Header */}
+        <motion.div
+          className="max-w-2xl"
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <span className="inline-flex items-center gap-2 text-sm font-medium text-primary mb-4">
+            <motion.span
+              className="h-px bg-primary"
+              initial={{ width: 0 }}
+              animate={isInView ? { width: 32 } : {}}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            />
+            About
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
+            A bit about me
+          </h2>
+        </motion.div>
 
-            <div className="container relative z-10">
-                {/* About Content */}
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    transition={{ duration: 0.5 }}
-                    viewport={{ once: true }}
-                    className="flex flex-col md:flex-row gap-12 items-center"
-                >
-                    {/* Profile Image */}
-                    <div className="w-full md:w-1/3 flex justify-center">
-                        <Image
-                            src="/images/profile.png"
-                            width={200}
-                            height={200}
-                            alt="Sandeep"
-                            className="rounded-full w-48 h-48 object-cover border-4 dark:border-[#8a2be2] shadow-xl"
+        {/* Content Grid */}
+        <div className="grid lg:grid-cols-5 gap-12 mt-12">
+          {/* Bio */}
+          <motion.div
+            className="lg:col-span-2 space-y-4"
+            initial={{ opacity: 0, x: -30 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <p className="text-muted-foreground leading-relaxed">
+              I&apos;m <span className="text-foreground font-medium">Sandeep</span>,
+              a full-stack web developer who loves building beautiful, scalable
+              applications with <span className="text-foreground font-medium">React</span>,
+              {" "}<span className="text-foreground font-medium">Next.js</span>, and
+              a modern tech stack.
+            </p>
+            <p className="text-muted-foreground leading-relaxed">
+              I started my journey in college and since then, I&apos;ve created many
+              projects to turn ideas into interactive, responsive web applications.
+            </p>
+            <p className="text-muted-foreground leading-relaxed">
+              Beyond coding, I enjoy exploring AI, learning new tech, and building
+              side projects. I&apos;m always excited for a challenge and passionate
+              about problem-solving.
+            </p>
+          </motion.div>
 
-                        />
-                    </div>
-
-                    {/* Text Content */}
-                    <div className="w-full md:w-2/3 px-8">
-                        <motion.div
-                            initial={{ opacity: 0, x: 50 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.5, delay: 0.2 }}
-                            viewport={{ once: true }}
-                        >
-                            <h2 className="text-3xl font-bold bg-gradient-to-r  bg-clip-text">
-                                About Me
-                            </h2>
-                            <div className="mt-4 space-y-4 text-md text-foreground">
-                                <p>
-                                    Hey there! I’m <strong className="text-3xl  text-primary">Sandeep</strong>, a <span className="font-medium">full-stack web developer</span> who loves building beautiful, scalable apps with <strong>React</strong>, <strong>Next.js</strong>, and a modern tech stack.
-                                </p>
-                                <p>
-                                    I started my journey in college and since then, I’ve created many projects to turn ideas into interactive, responsive web applications.
-                                </p>
-                                <p>
-                                    Beyond coding, I enjoy exploring AI, learning new tech, and building side projects. I'm always excited for a challenge and passionate about problem-solving!
-                                </p>
-                            </div>
-                        </motion.div>
-                    </div>
-                </motion.div>
-            </div>
-        </section>
-    )
+          {/* Highlight Cards */}
+          <div className="lg:col-span-3 grid sm:grid-cols-2 gap-4">
+            {highlights.map((item, i) => (
+              <motion.div
+                key={item.title}
+                className="group p-5 rounded-xl border border-border bg-card hover:border-primary/30 hover:glow-sm transition-all duration-500"
+                initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
+                transition={{
+                  duration: 0.6,
+                  delay: 0.2 + i * 0.1,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                whileHover={{ y: -4, transition: { duration: 0.3 } }}
+              >
+                <div className="p-2 rounded-lg bg-primary/10 text-primary w-fit mb-3 group-hover:bg-primary/20 transition-colors duration-300">
+                  <item.icon className="h-5 w-5" />
+                </div>
+                <h3 className="font-semibold text-foreground mb-1">{item.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  {item.description}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }

@@ -1,10 +1,9 @@
 import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider"
-import { Inter } from "next/font/google"
+import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from "@/components/Navbar";
-import { Toaster } from 'sonner'
-const inter = Inter({ subsets: ["latin"] })
+import { Toaster } from "sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,31 +15,37 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const inter = Inter({ subsets: ["latin"] });
+
 export const metadata = {
-  title: "Sandeep's Portfolio",
-  description: "Created by Sandeep",
+  title: "Sandeep Patil — Full Stack Developer",
+  description:
+    "Portfolio of Sandeep Patil — a full-stack web developer building fast, accessible, and scalable web experiences with React, Next.js, and modern tools.",
+  openGraph: {
+    title: "Sandeep Patil — Full Stack Developer",
+    description:
+      "Building fast, accessible, and scalable web experiences.",
+    type: "website",
+  },
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${inter.className} antialiased`}
       >
-      
-     <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
           <Navbar />
           {children}
-          <Toaster richColors />
+          <Toaster richColors position="bottom-right" />
         </ThemeProvider>
       </body>
     </html>
   );
 }
-
-
-
-
-
-
-

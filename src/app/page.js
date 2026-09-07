@@ -1,21 +1,21 @@
 import About from "@/components/About";
 import Contact from "@/components/Contact";
+import Experience from "@/components/Experience";
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import Skills from "@/components/Skills";
-import Blog from './blog/page'
+import Projects from "@/components/Projects";
 
 export default function Home() {
   return (
-    <>
-      <main className="max-h-screen">
-        <Hero />
-        <About />
-        <Blog/>
-        <Skills/>
-        <Contact/>
-        <Footer/>
-      </main>
-    </>
+    <main>
+      <Hero />
+      <About />
+      <Experience />
+      <Projects />
+      <Skills />
+      <Contact />
+      <Footer />
+    </main>
   );
 }
