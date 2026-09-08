@@ -1,5 +1,5 @@
 import { Geist, Geist_Mono } from "next/font/google";
-import { Inter } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from "@/components/Navbar";
@@ -15,16 +15,24 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const inter = Inter({ subsets: ["latin"] });
+const poppins = Poppins({
+  variable: "--font-display",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+});
 
 export const metadata = {
   title: "Sandeep Patil — Full Stack Developer",
   description:
-    "Portfolio of Sandeep Patil — a full-stack web developer building fast, accessible, and scalable web experiences with React, Next.js, and modern tools.",
+    "Sandeep Patil is a Full-stack Web developer shipping fast, accessible, and scalable web products with React, Next.js, Node.js, and modern tooling.",
+  icons: {
+    icon: "/images/profile.png",
+    apple: "/images/profile.png",
+  },
   openGraph: {
-    title: "Sandeep Patil — Full Stack Developer",
+    title: "Sandeep Patil — Full Stack Web Developer",
     description:
-      "Building fast, accessible, and scalable web experiences.",
+      "Full-Stack Web Developer engineering dependable web products.",
     type: "website",
   },
 };
@@ -33,7 +41,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${inter.className} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} antialiased`}
       >
         <ThemeProvider
           attribute="class"

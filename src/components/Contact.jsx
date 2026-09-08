@@ -2,15 +2,8 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import {
-  Mail,
-  Github,
-  Linkedin,
-  Code2,
-  TerminalSquare,
-  ExternalLink,
-} from "lucide-react";
+import { ArrowUpRight, Github, Linkedin, Mail, Code2, TerminalSquare } from "lucide-react";
+import SectionHeading from "@/components/SectionHeading";
 
 const XIcon = ({ className }) => (
   <svg
@@ -23,41 +16,41 @@ const XIcon = ({ className }) => (
   </svg>
 );
 
-const socialLinks = [
+const socials = [
   {
     icon: Mail,
-    title: "Email",
-    content: "sandeeppatil10705@gmail.com",
+    label: "Email",
+    handle: "sandeeppatil10705@gmail.com",
     href: "mailto:sandeeppatil10705@gmail.com",
   },
   {
-    icon: XIcon,
-    title: "X",
-    content: "SANDEEPMADHAV2",
-    href: "https://x.com/SANDEEPMADHAVR2?t=NfXiLG99hCHEuGhs1D9PUw&s=08",
-  },
-  {
     icon: Github,
-    title: "GitHub",
-    content: "sandeep-m-patil",
+    label: "GitHub",
+    handle: "sandeep-m-patil",
     href: "https://github.com/sandeep-m-patil",
   },
   {
     icon: Linkedin,
-    title: "LinkedIn",
-    content: "psandeep2005",
+    label: "LinkedIn",
+    handle: "psandeep2005",
     href: "https://linkedin.com/in/psandeep2005",
   },
   {
+    icon: XIcon,
+    label: "X",
+    handle: "@SANDEEPMADHAVR2",
+    href: "https://x.com/SANDEEPMADHAVR2?t=NfXiLG99hCHEuGhs1D9PUw&s=08",
+  },
+  {
     icon: Code2,
-    title: "LeetCode",
-    content: "sandeeppatil10705",
+    label: "LeetCode",
+    handle: "sandeeppatil10705",
     href: "https://leetcode.com/sandeeppatil10705",
   },
   {
     icon: TerminalSquare,
-    title: "HackerRank",
-    content: "sandeep10705",
+    label: "HackerRank",
+    handle: "sandeep10705",
     href: "https://www.hackerrank.com/sandeep10705",
   },
 ];
@@ -67,70 +60,65 @@ export default function Contact() {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="contact" className="py-24 sm:py-32 relative overflow-hidden">
-      <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-primary/3 dark:bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
+    <section id="contact" className="relative overflow-hidden py-24 sm:py-32 hairline-t">
+      <div className="container mx-auto max-w-4xl px-6" ref={ref}>
+        <SectionHeading
+          index="05"
+          label="Contact"
+          title="Let's talk."
+          description="I'm open to full-time roles, freelance work, and collaborations. If you have a project in mind — or just want to talk engineering — my inbox is always open."
+          align="center"
+        />
 
-      <div className="container mx-auto max-w-6xl px-6 relative z-10" ref={ref}>
-        {/* Section Header */}
         <motion.div
-          className="max-w-2xl"
-          initial={{ opacity: 0, y: 30 }}
+          className="mt-12 flex flex-col items-center gap-8"
+          initial={{ opacity: 0, y: 24 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
         >
-          <span className="inline-flex items-center gap-2 text-sm font-medium text-primary mb-4">
-            <motion.span
-              className="h-px bg-primary"
-              initial={{ width: 0 }}
-              animate={isInView ? { width: 32 } : {}}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            />
-            Contact
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
-            Let&apos;s connect
-          </h2>
-          <p className="mt-3 text-muted-foreground">
-            I&apos;m always open to new opportunities, collaborations, or just a
-            friendly chat. Reach out through any of these platforms.
-          </p>
+          <a
+            href="mailto:sandeeppatil10705@gmail.com"
+            className="group inline-flex items-center gap-3 font-mono text-base sm:text-lg text-foreground underline decoration-primary/40 decoration-2 underline-offset-8 transition-colors duration-300 hover:text-primary"
+          >
+            sandeeppatil10705@gmail.com
+            <ArrowUpRight className="h-5 w-5 text-primary" />
+          </a>
+
+          <div className="flex items-center gap-2 text-sm text-muted-foreground">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+            </span>
+            Open to full-time &amp; freelance opportunities
+          </div>
         </motion.div>
 
-        {/* Social Links Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-12">
-          {socialLinks.map((item, index) => (
-            <motion.a
-              key={item.title}
+        {/* Social list */}
+        <motion.div
+          className="mt-14 overflow-hidden rounded-lg border border-border bg-card"
+          initial={{ opacity: 0, y: 24 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+        >
+          {socials.map((item, i) => (
+            <a
+              key={item.label}
               href={item.href}
               target={item.href.startsWith("mailto:") ? undefined : "_blank"}
               rel="noopener noreferrer"
-              className="block"
-              initial={{ opacity: 0, y: 30, scale: 0.95 }}
-              animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
-              transition={{
-                duration: 0.5,
-                delay: 0.15 + index * 0.07,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-              whileHover={{ y: -4, transition: { duration: 0.3 } }}
+              className={
+                "group flex items-center gap-4 px-5 py-4 transition-colors duration-300 hover:bg-muted/50 " +
+                (i < socials.length - 1 ? "border-b border-border/60" : "")
+              }
             >
-              <Card className="h-full hover:border-primary/30 hover:glow-sm transition-all duration-500">
-                <CardHeader className="flex flex-row items-center space-x-3 pb-2">
-                  <div className="p-2 rounded-lg bg-primary/10 text-primary">
-                    <item.icon className="h-5 w-5" />
-                  </div>
-                  <CardTitle className="text-base">{item.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground flex items-center gap-1">
-                    {item.content}
-                    <ExternalLink className="h-3 w-3 opacity-50" />
-                  </p>
-                </CardContent>
-              </Card>
-            </motion.a>
+              <item.icon className="h-5 w-5 text-muted-foreground transition-colors duration-300 group-hover:text-primary" />
+              <span className="flex-1 truncate text-sm font-medium text-foreground">
+                {item.handle}
+              </span>
+              <ArrowUpRight className="h-4 w-4 text-muted-foreground transition-colors duration-300 group-hover:text-primary" />
+            </a>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

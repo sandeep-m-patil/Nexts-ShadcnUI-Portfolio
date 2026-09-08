@@ -102,26 +102,5 @@ export const projects = [
     image: "/images/Youtube.png",
     featured: false,
   },
-  {
-    slug: "todo-app",
-    icon: GrTask,
-    title: "Todo App",
-    subtitle: "Task Manager",
-    description:
-      "A simple yet functional Todo App built with HTML, CSS, and JavaScript. Enables users to add, delete, and manage daily tasks with Local Storage persistence.",
-    techStack: ["HTML", "CSS", "JavaScript"],
-    features: [
-      "Add new tasks to your list",
-      "Mark tasks as completed",
-      "Delete tasks individually",
-      "Tasks persist using Local Storage",
-      "Responsive design for mobile and desktop",
-    ],
-    links: {
-      github: "https://github.com/sandeep-m-patil/Todo-List",
-      demo: "https://sandeep-m-patil.github.io/Todo-List/",
-    },
-    image: "/images/Todo.png",
-    featured: false,
-  },
+ 
 ];

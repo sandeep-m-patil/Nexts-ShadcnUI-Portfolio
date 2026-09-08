@@ -1,11 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { ChevronUp, Github, Linkedin, Twitter } from "lucide-react";
+import { ArrowUp, Github, Linkedin, Twitter } from "lucide-react";
 import Link from "next/link";
 
 const navItems = [
-  { title: "Home", url: "#home" },
   { title: "About", url: "#about" },
   { title: "Experience", url: "#experience" },
   { title: "Projects", url: "#projects" },
@@ -27,78 +25,64 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative border-t">
-      {/* Gradient accent line */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
-
-      <div className="container mx-auto max-w-6xl px-6 py-12">
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+    <footer className="hairline-t">
+      <div className="container mx-auto max-w-6xl px-6 pb-10 pt-16">
+        <div className="flex flex-col gap-10 sm:flex-row sm:items-start sm:justify-between">
           {/* Brand */}
-          <div>
-            <Link href="/" className="font-bold text-lg tracking-tight">
+          <div className="max-w-xs">
+            <Link href="/" className="font-bold text-lg tracking-tight font-display">
               <span className="text-foreground">sandeep</span>
               <span className="text-primary">.</span>
             </Link>
-            <p className="mt-2 text-sm text-muted-foreground">
-              Full Stack Developer
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+              Full-Stack Web Developer building fast, reliable, and accessible web
+              products.
             </p>
-          </div>
-
-          {/* Quick Links */}
-          <div>
-            <h3 className="text-sm font-semibold text-foreground mb-3">
-              Navigation
-            </h3>
-            <nav className="flex flex-col gap-2">
-              {navItems.map((item) => (
-                <Link
-                  key={item.title}
-                  href={item.url}
-                  className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300 w-fit"
-                >
-                  {item.title}
-                </Link>
-              ))}
-            </nav>
-          </div>
-
-          {/* Social */}
-          <div>
-            <h3 className="text-sm font-semibold text-foreground mb-3">
-              Connect
-            </h3>
-            <div className="flex items-center gap-3">
+            <div className="mt-5 flex items-center gap-3">
               {socials.map((social) => (
-                <motion.a
+                <a
                   key={social.label}
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 rounded-lg bg-muted hover:bg-primary/10 text-muted-foreground hover:text-primary transition-all duration-300"
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
+                  className="p-2 text-muted-foreground transition-colors duration-300 hover:text-primary"
+                  aria-label={social.label}
                 >
                   <social.icon className="h-4 w-4" />
-                </motion.a>
+                </a>
               ))}
             </div>
           </div>
-        </div>
 
-        {/* Bottom */}
-        <div className="flex flex-col sm:flex-row items-center justify-between mt-10 pt-6 border-t gap-4">
-          <p className="text-xs text-muted-foreground">
-            &copy; {currentYear} Sandeep Patil. All rights reserved.
-          </p>
-          <motion.button
+          {/* Navigation */}
+          <nav className="grid grid-cols-2 gap-x-12 gap-y-2">
+            {navItems.map((item) => (
+              <Link
+                key={item.title}
+                href={item.url}
+                className="text-sm text-muted-foreground transition-colors duration-300 hover:text-foreground"
+              >
+                {item.title}
+              </Link>
+            ))}
+          </nav>
+
+          {/* Back to top */}
+          <button
             onClick={scrollToTop}
-            className="p-2 rounded-full bg-muted hover:bg-primary/10 text-muted-foreground hover:text-primary transition-all duration-300"
-            whileHover={{ scale: 1.15, y: -2 }}
-            whileTap={{ scale: 0.9 }}
+            className="inline-flex items-center gap-2 self-start text-sm text-muted-foreground transition-colors duration-300 hover:text-foreground"
             aria-label="Back to top"
           >
-            <ChevronUp className="h-4 w-4" />
-          </motion.button>
+            Back to top
+            <ArrowUp className="h-4 w-4" />
+          </button>
+        </div>
+
+        <div className="mt-12 flex flex-col justify-between gap-2 border-t border-border/60 pt-6 text-xs text-muted-foreground sm:flex-row">
+          <span>
+            &copy; {currentYear} Sandeep Patil. All rights reserved.
+          </span>
+          <span className="font-mono">built with Next.js · designed with intent</span>
         </div>
       </div>
     </footer>

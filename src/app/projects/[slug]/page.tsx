@@ -11,6 +11,12 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
 
+const sectionAnim = (delay: number) => ({
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.5, delay, ease: [0.22, 1, 0.36, 1] as const },
+});
+
 export default function ProjectDetails() {
   const params = useParams();
   const slug = params?.slug as string;
@@ -18,92 +24,72 @@ export default function ProjectDetails() {
   const post = projects.find((p) => p.slug === slug);
   if (!post)
     return (
-      <div className="text-center py-40 text-muted-foreground">
+      <div className="py-40 text-center text-muted-foreground">
         Project not found.
       </div>
     );
 
   const Icon = post.icon;
 
-  const sectionAnim = (delay: number) => ({
-    initial: { opacity: 0, y: 24 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] as const },
-  });
-
   return (
-    <div className="w-full pb-20 pt-24">
+    <div className="w-full pb-24 pt-28">
       {/* Back */}
-      <motion.div
-        {...sectionAnim(0.1)}
-        className="container mx-auto max-w-3xl px-6 mb-6"
-      >
+      <motion.div {...sectionAnim(0.05)} className="container mx-auto max-w-3xl px-6">
         <Link
           href="/#projects"
-          className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors duration-300"
+          className="inline-flex items-center gap-2 font-mono text-sm text-muted-foreground transition-colors duration-300 hover:text-primary"
         >
           <FaArrowLeftLong />
-          Back to Projects
+          ../projects
         </Link>
       </motion.div>
 
-      <div className="max-w-3xl mx-auto px-6">
-        {/* Title + Icon */}
-        <motion.div
-          {...sectionAnim(0.15)}
-          className="flex flex-col md:flex-row items-center justify-center md:gap-4 mb-8 text-center"
-        >
-          {Icon && (
-            <div className="mb-2 md:mb-0">
-              <Icon className="text-4xl md:text-5xl text-primary" />
-            </div>
-          )}
-          <div>
-            <h1 className="text-2xl md:text-3xl font-bold">{post.title}</h1>
-            <p className="text-muted-foreground mt-1">{post.subtitle}</p>
+      <div className="mx-auto mt-10 max-w-3xl px-6">
+        {/* Title */}
+        <motion.div {...sectionAnim(0.1)}>
+          <div className="flex items-center gap-3">
+            {Icon && <Icon className="h-6 w-6 text-primary" />}
+            <span className="font-mono text-xs uppercase tracking-wider text-muted-foreground">
+              {post.subtitle}
+            </span>
           </div>
+          <h1 className="mt-3 text-3xl sm:text-4xl font-bold tracking-tight text-foreground font-display">
+            {post.title}
+          </h1>
         </motion.div>
 
         {/* Image */}
         {post.image && (
           <motion.div
-            className="relative aspect-video rounded-xl overflow-hidden mb-8 border border-border"
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            {...sectionAnim(0.15)}
+            className="relative mt-8 aspect-video overflow-hidden rounded-lg border border-border bg-muted"
           >
-            <Image
-              src={post.image}
-              alt={post.title}
-              fill
-              className="object-cover"
-            />
+            <Image src={post.image} alt={post.title} fill className="object-contain p-6" />
           </motion.div>
         )}
 
         {/* Description */}
-        <motion.div {...sectionAnim(0.2)} className="mb-8">
-          <div className="flex items-center gap-2 text-lg font-semibold mb-3">
-            <AiFillBook className="text-primary" />
+        <motion.div {...sectionAnim(0.2)} className="mt-10">
+          <div className="flex items-center gap-2 text-sm font-semibold text-foreground">
+            <AiFillBook className="h-4 w-4 text-primary" />
             <span>Description</span>
           </div>
-          <p className="text-muted-foreground leading-relaxed">
+          <p className="mt-3 leading-relaxed text-muted-foreground">
             {post.description}
           </p>
         </motion.div>
 
         {/* Tech Stack */}
-        <motion.div {...sectionAnim(0.25)} className="mb-8">
-          <div className="flex items-center gap-2 text-lg font-semibold mb-3">
-            <FaTools className="text-primary" />
-            <span>Tech Stack</span>
+        <motion.div {...sectionAnim(0.25)} className="mt-10">
+          <div className="flex items-center gap-2 text-sm font-semibold text-foreground">
+            <FaTools className="h-4 w-4 text-primary" />
+            <span>Tech stack</span>
           </div>
-          <div className="flex flex-wrap gap-2">
+          <div className="mt-3 flex flex-wrap gap-2">
             {post.techStack?.map((tech) => (
               <span
                 key={tech}
-                className="px-3 py-1 text-sm font-medium rounded-lg bg-muted border border-border text-foreground hover:border-primary/30 hover:bg-primary/5 hover:text-primary transition-all duration-300"
+                className="rounded-md border border-border bg-muted/50 px-2.5 py-1 text-sm font-medium text-foreground"
               >
                 {tech}
               </span>
@@ -112,50 +98,36 @@ export default function ProjectDetails() {
         </motion.div>
 
         {/* Features */}
-        <motion.div {...sectionAnim(0.3)} className="mb-8">
-          <div className="flex items-center gap-2 text-lg font-semibold mb-3">
-            <FaRegCheckCircle className="text-primary" />
+        <motion.div {...sectionAnim(0.3)} className="mt-10">
+          <div className="flex items-center gap-2 text-sm font-semibold text-foreground">
+            <FaRegCheckCircle className="h-4 w-4 text-primary" />
             <span>Features</span>
           </div>
-          <motion.ul
-            className="space-y-2"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            variants={{
-              hidden: {},
-              visible: { transition: { staggerChildren: 0.06 } },
-            }}
-          >
+          <ul className="mt-3 space-y-2.5">
             {post.features?.map((feature, i) => (
-              <motion.li
+              <li
                 key={i}
-                className="flex items-start gap-2 text-muted-foreground"
-                variants={{
-                  hidden: { opacity: 0, x: -12 },
-                  visible: { opacity: 1, x: 0 },
-                }}
-                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                className="flex items-start gap-3 text-sm leading-relaxed text-muted-foreground"
               >
-                <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary flex-shrink-0" />
+                <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-primary" />
                 {feature}
-              </motion.li>
+              </li>
             ))}
-          </motion.ul>
+          </ul>
         </motion.div>
 
         {/* Links */}
-        <motion.div {...sectionAnim(0.35)}>
-          <div className="flex items-center gap-2 text-lg font-semibold mb-3">
-            <FaLink className="text-primary" />
+        <motion.div {...sectionAnim(0.35)} className="mt-10">
+          <div className="flex items-center gap-2 text-sm font-semibold text-foreground">
+            <FaLink className="h-4 w-4 text-primary" />
             <span>Links</span>
           </div>
-          <div className="flex flex-col sm:flex-row gap-3">
+          <div className="mt-3 flex flex-col gap-3 sm:flex-row">
             {post.links?.github && (
               <Button asChild size="lg" variant="outline" className="gap-2">
                 <Link href={post.links.github} target="_blank">
                   <FaGithub />
-                  GitHub
+                  Source code
                 </Link>
               </Button>
             )}
@@ -163,7 +135,7 @@ export default function ProjectDetails() {
               <Button asChild size="lg" variant="default" className="gap-2">
                 <Link href={post.links.demo} target="_blank">
                   <IoIosRocket />
-                  Live Demo
+                  Live demo
                 </Link>
               </Button>
             )}

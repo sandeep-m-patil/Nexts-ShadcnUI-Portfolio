@@ -2,29 +2,35 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Code2, Palette, Zap, Heart } from "lucide-react";
+import SectionHeading from "@/components/SectionHeading";
 
-const highlights = [
+const principles = [
   {
-    icon: Code2,
-    title: "Clean Code",
-    description: "Writing maintainable, well-structured code that scales.",
+    title: "Clean architecture",
+    description:
+      "Maintainable, well-structured code — deliberate naming, small modules, and patterns that scale with the team.",
   },
   {
-    icon: Palette,
-    title: "UI/UX Focused",
-    description: "Building interfaces that are intuitive and visually refined.",
+    title: "UI that respects users",
+    description:
+      "Interfaces that are intuitive, accessible, and refined. Visual polish that serves function.",
   },
   {
-    icon: Zap,
-    title: "Performance",
-    description: "Optimizing for speed, accessibility, and real-world usage.",
+    title: "Performance as a feature",
+    description:
+      "Fast load times, no N+1 traps, and measurable efficiency baked in from the start.",
   },
   {
-    icon: Heart,
-    title: "Continuous Learner",
-    description: "Always exploring new tools, patterns, and technologies.",
+    title: "Relentless learning",
+    description:
+      "Always studying new tools and paradigms — from modern frontend frameworks to the LLM-driven stack.",
   },
+];
+
+const facts = [
+  { label: "Location", value: "Hyderabad, India" },
+  { label: "Currently", value: "Software Development Trainee @ CittaAI" },
+  { label: "Focus", value: "Full-stack web · AI-assisted products" },
 ];
 
 export default function About() {
@@ -32,84 +38,97 @@ export default function About() {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="about" className="py-24 sm:py-32 relative overflow-hidden">
-      {/* Subtle navy radial bg */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/3 dark:bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
+    <section id="about" className="relative overflow-hidden py-24 sm:py-32 hairline-t">
+      <div className="container mx-auto max-w-6xl px-6" ref={ref}>
+        <SectionHeading
+          label="About"
+          title="Engineer by craft, builder by instinct."
+        />
 
-      <div className="container mx-auto max-w-6xl px-6 relative z-10" ref={ref}>
-        {/* Section Header */}
-        <motion.div
-          className="max-w-2xl"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <span className="inline-flex items-center gap-2 text-sm font-medium text-primary mb-4">
-            <motion.span
-              className="h-px bg-primary"
-              initial={{ width: 0 }}
-              animate={isInView ? { width: 32 } : {}}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            />
-            About
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
-            A bit about me
-          </h2>
-        </motion.div>
-
-        {/* Content Grid */}
-        <div className="grid lg:grid-cols-5 gap-12 mt-12">
+        <div className="grid lg:grid-cols-5 gap-12 lg:gap-16 mt-14">
           {/* Bio */}
           <motion.div
-            className="lg:col-span-2 space-y-4"
-            initial={{ opacity: 0, x: -30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+            className="lg:col-span-3"
+            initial={{ opacity: 0, y: 24 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
           >
-            <p className="text-muted-foreground leading-relaxed">
-              I&apos;m <span className="text-foreground font-medium">Sandeep</span>,
-              a full-stack web developer who loves building beautiful, scalable
-              applications with <span className="text-foreground font-medium">React</span>,
-              {" "}<span className="text-foreground font-medium">Next.js</span>, and
-              a modern tech stack.
-            </p>
-            <p className="text-muted-foreground leading-relaxed">
-              I started my journey in college and since then, I&apos;ve created many
-              projects to turn ideas into interactive, responsive web applications.
-            </p>
-            <p className="text-muted-foreground leading-relaxed">
-              Beyond coding, I enjoy exploring AI, learning new tech, and building
-              side projects. I&apos;m always excited for a challenge and passionate
-              about problem-solving.
-            </p>
+            <div className="space-y-5 text-base leading-relaxed text-muted-foreground">
+              <p>
+                I&apos;m Sandeep, a Full-Stack Web Developer who started coding in
+                college and hasn&apos;t stopped building since. I care about the
+                whole journey of a product — from the data model and API design
+                to the last pixel of the interface.
+              </p>
+              <p>
+                Today I work at{" "}
+                <span className="font-medium text-foreground">CittaAI</span>, an
+                early-stage AI startup, where I ship features across
+                React/Next.js frontends and Node.js backends — and wire
+                LLM-powered capabilities into production products.
+              </p>
+              <p>
+                I&apos;ve turned dozens of ideas into working, responsive web
+                applications. My toolkit spans the MERN stack, PostgreSQL, and
+                the design systems (Tailwind + ShadcnUI) that keep interfaces
+                consistent at scale.
+              </p>
+            </div>
+
+            {/* Facts */}
+            <div className="mt-10 rounded-lg border border-border bg-card">
+              {facts.map((fact, i) => (
+                <div
+                  key={fact.label}
+                  className={
+                    "flex items-center justify-between gap-4 px-5 py-3.5 text-sm " +
+                    (i < facts.length - 1 ? "border-b border-border/60" : "")
+                  }
+                >
+                  <span className="font-mono text-xs uppercase tracking-wider text-muted-foreground">
+                    {fact.label}
+                  </span>
+                  <span className="text-right font-medium text-foreground">
+                    {fact.value}
+                  </span>
+                </div>
+              ))}
+            </div>
           </motion.div>
 
-          {/* Highlight Cards */}
-          <div className="lg:col-span-3 grid sm:grid-cols-2 gap-4">
-            {highlights.map((item, i) => (
-              <motion.div
-                key={item.title}
-                className="group p-5 rounded-xl border border-border bg-card hover:border-primary/30 hover:glow-sm transition-all duration-500"
-                initial={{ opacity: 0, y: 30, scale: 0.95 }}
-                animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
-                transition={{
-                  duration: 0.6,
-                  delay: 0.2 + i * 0.1,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
-                whileHover={{ y: -4, transition: { duration: 0.3 } }}
-              >
-                <div className="p-2 rounded-lg bg-primary/10 text-primary w-fit mb-3 group-hover:bg-primary/20 transition-colors duration-300">
-                  <item.icon className="h-5 w-5" />
+          {/* Principles */}
+          <motion.div
+            className="lg:col-span-2"
+            initial={{ opacity: 0, y: 24 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <div className="flex items-center gap-3">
+              <span className="h-px w-8 bg-primary/60" />
+              <span className="text-xs uppercase tracking-[0.25em] text-muted-foreground">
+                Principles
+              </span>
+            </div>
+            <div className="mt-6">
+              {principles.map((principle, i) => (
+                <div
+                  key={principle.title}
+                  className={
+                    "py-5 " + (i < principles.length - 1 ? "border-b border-border/60" : "")
+                  }
+                >
+                  <div className="flex items-baseline gap-3">
+                    <h3 className="font-semibold text-foreground font-display">
+                      {principle.title}
+                    </h3>
+                  </div>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                    {principle.description}
+                  </p>
                 </div>
-                <h3 className="font-semibold text-foreground mb-1">{item.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  {item.description}
-                </p>
-              </motion.div>
-            ))}
-          </div>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>

@@ -4,117 +4,149 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ExternalLink, Github } from "lucide-react";
+import { ArrowUpRight, Github } from "lucide-react";
 import { projects } from "@/data/projects";
+import SectionHeading from "@/components/SectionHeading";
 
 export default function Projects() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
-  return (
-    <section id="projects" className="py-24 sm:py-32 relative overflow-hidden">
-      <div className="absolute top-1/2 right-0 w-[400px] h-[400px] bg-primary/3 dark:bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
+  const [featured, ...rest] = projects;
 
-      <div className="container mx-auto max-w-6xl px-6 relative z-10" ref={ref}>
-        {/* Section Header */}
+  return (
+    <section id="projects" className="relative overflow-hidden py-24 sm:py-32 hairline-t">
+      <div className="container mx-auto max-w-6xl px-6" ref={ref}>
+        <SectionHeading
+          index="03"
+          label="Projects"
+          title="Selected work"
+          description="A focused set of projects I've built — full-stack products and sharp frontend work. Each one taught me something worth shipping."
+        />
+
+        {/* Featured project */}
         <motion.div
-          className="max-w-2xl"
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 24 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+          className="mt-14"
         >
-          <span className="inline-flex items-center gap-2 text-sm font-medium text-primary mb-4">
-            <motion.span
-              className="h-px bg-primary"
-              initial={{ width: 0 }}
-              animate={isInView ? { width: 32 } : {}}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            />
-            Projects
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
-            Featured work
-          </h2>
-          <p className="mt-3 text-muted-foreground">
-            A selection of projects I&apos;ve built — from full-stack apps to
-            frontend experiments.
-          </p>
+          <Link href={`/projects/${featured.slug}`} className="block">
+            <article className="grid overflow-hidden rounded-lg border border-border bg-card lg:grid-cols-2">
+              <div className="relative aspect-[16/10] lg:aspect-auto overflow-hidden bg-muted">
+                <Image
+                  src={featured.image}
+                  alt={featured.title}
+                  fill
+                  className="object-contain p-6"
+                />
+              </div>
+
+              <div className="flex flex-col p-7 sm:p-10">
+                <div className="flex items-center justify-between">
+                  <span className="font-mono text-xs uppercase tracking-wider text-muted-foreground">
+                    {featured.subtitle}
+                  </span>
+                  <ArrowUpRight className="h-5 w-5 text-muted-foreground" />
+                </div>
+
+                <h3 className="mt-4 text-2xl sm:text-3xl font-bold text-foreground font-display">
+                  {featured.title}
+                </h3>
+                <p className="mt-4 leading-relaxed text-muted-foreground">
+                  {featured.description}
+                </p>
+
+                <div className="mt-6 flex flex-wrap gap-2">
+                  {featured.techStack.map((tech) => (
+                    <span
+                      key={tech}
+                      className="rounded-md border border-border bg-muted/50 px-2.5 py-1 text-xs font-medium text-foreground"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="mt-auto flex items-center gap-6 pt-8">
+                  {featured.links.github && (
+                    <span className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground">
+                      <Github className="h-4 w-4" />
+                      Source
+                    </span>
+                  )}
+                  {featured.links.demo && (
+                    <span className="inline-flex items-center gap-2 text-sm font-medium text-primary">
+                      <ArrowUpRight className="h-4 w-4" />
+                      Live demo
+                    </span>
+                  )}
+                </div>
+              </div>
+            </article>
+          </Link>
         </motion.div>
 
-        {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 gap-6 mt-12">
-          {projects.map((project, i) => {
+        {/* Project grid */}
+        <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {rest.map((project, i) => {
             const Icon = project.icon;
             return (
               <motion.div
                 key={project.slug}
-                initial={{ opacity: 0, y: 40, scale: 0.95 }}
-                animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
+                initial={{ opacity: 0, y: 24 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{
-                  duration: 0.6,
-                  delay: 0.15 + i * 0.1,
+                  duration: 0.5,
+                  delay: 0.2 + i * 0.08,
                   ease: [0.22, 1, 0.36, 1],
                 }}
               >
-                <Link href={`/projects/${project.slug}`} className="group block">
-                  <article className="h-full rounded-xl border border-border bg-card overflow-hidden hover:border-primary/30 hover:glow-sm transition-all duration-500">
-                    {/* Image */}
-                    <div className="relative aspect-video bg-muted overflow-hidden">
+                <Link href={`/projects/${project.slug}`} className="block h-full">
+                  <article className="flex h-full flex-col overflow-hidden rounded-lg border border-border bg-card">
+                    <div className="relative aspect-video overflow-hidden bg-muted">
+                      {Icon && (
+                        <span className="absolute left-3 top-3 z-10 grid h-9 w-9 place-items-center rounded-md border border-border bg-background/80 text-primary backdrop-blur">
+                          <Icon className="h-4 w-4" />
+                        </span>
+                      )}
                       <Image
                         src={project.image}
                         alt={project.title}
                         fill
-                        className="object-cover transition-transform duration-700 group-hover:scale-110"
+                        className="object-contain p-4"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-card via-card/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     </div>
 
-                    {/* Content */}
-                    <div className="p-5">
-                      <div className="flex items-center gap-2 mb-2">
-                        {Icon && (
-                          <Icon className="h-4 w-4 text-primary" />
-                        )}
-                        <span className="text-xs font-medium text-primary uppercase tracking-wider">
-                          {project.subtitle}
-                        </span>
+                    <div className="flex flex-1 flex-col p-6">
+                      <div className="flex items-start justify-between gap-3">
+                        <div>
+                          <span className="font-mono text-xs uppercase tracking-wider text-muted-foreground">
+                            {project.subtitle}
+                          </span>
+                          <h3 className="mt-2 text-lg font-bold text-foreground font-display">
+                            {project.title}
+                          </h3>
+                        </div>
+                        <ArrowUpRight className="mt-1 h-4 w-4 shrink-0 text-muted-foreground" />
                       </div>
-                      <h3 className="text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
-                        {project.title}
-                      </h3>
-                      <p className="text-sm text-muted-foreground line-clamp-2 mb-4">
+
+                      <p className="mt-3 text-sm leading-relaxed text-muted-foreground line-clamp-3">
                         {project.description}
                       </p>
 
-                      {/* Tech Stack */}
-                      <div className="flex flex-wrap gap-1.5 mb-4">
-                        {project.techStack.slice(0, 4).map((tech) => (
+                      <div className="mt-5 flex flex-wrap gap-1.5">
+                        {project.techStack.slice(0, 3).map((tech) => (
                           <span
                             key={tech}
-                            className="px-2 py-0.5 text-xs font-medium rounded-md bg-muted text-muted-foreground group-hover:bg-primary/5 group-hover:text-primary transition-all duration-300"
+                            className="rounded-md border border-border bg-muted/50 px-2 py-0.5 text-[11px] font-medium text-foreground"
                           >
                             {tech}
                           </span>
                         ))}
-                        {project.techStack.length > 4 && (
-                          <span className="px-2 py-0.5 text-xs font-medium rounded-md bg-muted text-muted-foreground">
-                            +{project.techStack.length - 4}
-                          </span>
-                        )}
-                      </div>
-
-                      {/* Links */}
-                      <div className="flex items-center gap-3">
-                        {project.links.github && (
-                          <span className="inline-flex items-center gap-1.5 text-sm text-muted-foreground group-hover:text-foreground transition-colors">
-                            <Github className="h-4 w-4" />
-                            Code
-                          </span>
-                        )}
-                        {project.links.demo && (
-                          <span className="inline-flex items-center gap-1.5 text-sm text-muted-foreground group-hover:text-foreground transition-colors">
-                            <ExternalLink className="h-4 w-4" />
-                            Live Demo
+                        {project.techStack.length > 3 && (
+                          <span className="rounded-md border border-border bg-muted/50 px-2 py-0.5 text-[11px] font-medium text-muted-foreground">
+                            +{project.techStack.length - 3}
                           </span>
                         )}
                       </div>
