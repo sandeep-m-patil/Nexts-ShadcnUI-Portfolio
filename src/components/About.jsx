@@ -33,7 +33,7 @@ export default function About() {
 
   return (
     <section id="about" className="py-24 sm:py-32 relative overflow-hidden">
-      {/* Subtle purple radial bg */}
+      {/* Subtle navy radial bg */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/3 dark:bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="container mx-auto max-w-6xl px-6 relative z-10" ref={ref}>
